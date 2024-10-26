@@ -18,7 +18,8 @@ fn main() {
         println!("Running on Linux!");
         // Add Linux-specific code here
         // https://stackoverflow.com/questions/40613898/how-to-force-immediate-writes-to-a-disk-from-our-own-driver-on-linux
-
+        // mounted disk can't write. Its always busy. So I choose to unmounte some Mounted disk and
+        // do reformat that
 
     } else {
         println!("Running on an unsupported OS!");
